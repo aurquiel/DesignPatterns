@@ -36,7 +36,7 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
 
             // TODO Auto-generated method stub
 
-            Console.WriteLine("Making enemy ship " + getName());
+            Console.WriteLine("Making enemy ship " + Name);
 
             // The specific weapon & engine needed were passed in
             // shipFactory. We are assigning those specific part

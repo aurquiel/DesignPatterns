@@ -20,7 +20,7 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
             {
                 EnemyShipFactory shipPartsFactory = new UFOEnemyShipFactory();
                 theEnemyShip = new UFOEnemyShip(shipPartsFactory);
-                theEnemyShip.setName("UFO Grunt Ship");
+                theEnemyShip.Name = "UFO Grunt Ship";
 
             }
             else
@@ -33,7 +33,7 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
             {
                 EnemyShipFactory shipPartsFactory = new UFOBossEnemyShipFactory();
                 theEnemyShip = new UFOBossEnemyShip(shipPartsFactory);
-                theEnemyShip.setName("UFO Boss Ship");
+                theEnemyShip.Name = "UFO Boss Ship";
 
             }
 
