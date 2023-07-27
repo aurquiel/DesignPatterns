@@ -42,7 +42,7 @@ Console.WriteLine("Absctract Factory Pattern");
 EnemyShipBuilding MakeUFOs = new UFOEnemyShipBuilding();
 
 EnemyShip theGrunt = MakeUFOs.orderTheShip("UFO");
-Console.WriteLine(theGrunt);
+Console.WriteLine(theGrunt.ToString());
 
 EnemyShip theBoss = MakeUFOs.orderTheShip("UFO");
-Console.WriteLine(theBoss);
+Console.WriteLine(theBoss.ToString());

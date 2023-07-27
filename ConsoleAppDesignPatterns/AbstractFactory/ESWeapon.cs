@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppDesignPatterns.AbstractFactory
 {
-    internal interface ESWeapon
+    public interface ESWeapon
     {
-        public String toString();
+        public string ToString();
     }
 }

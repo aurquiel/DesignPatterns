@@ -8,7 +8,7 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
 {
     internal class ESUFOEngine : ESEngine
     {
-        public string toString()
+        public override string ToString()
         {
             return "1000 mph";
         }

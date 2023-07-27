@@ -50,7 +50,7 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
 
         // If any EnemyShip object is printed to screen this shows up
 
-        public String toString()
+        public override string ToString()
         {
 
             String infoOnShip = "The " + name + " has a top speed of " + engine +
