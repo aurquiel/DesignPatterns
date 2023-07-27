@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleAppDesignPatterns.AbstractFactory
+namespace ConsoleAppDesignPatterns.Visitor
 {
-    public interface ESWeapon
+    public interface IVisitable
     {
-        public string ToString();
+        public double accept(IVisitor visitor);
     }
 }

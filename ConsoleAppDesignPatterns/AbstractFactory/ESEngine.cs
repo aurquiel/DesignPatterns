@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppDesignPatterns.AbstractFactory
 {
-    internal interface ESEngine
+    public interface ESEngine
     {
-        public String toString();
+        public String ToString();
     }
 }

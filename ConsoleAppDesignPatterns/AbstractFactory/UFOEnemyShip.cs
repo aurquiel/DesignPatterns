@@ -34,7 +34,7 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
         public override void makeShip()
         {
 
-            Console.WriteLine("Making enemy ship " + getName());
+            Console.WriteLine("Making enemy ship " + Name);
 
             // The specific weapon & engine needed were passed in
             // shipFactory. We are assigning those specific part

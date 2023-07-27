@@ -8,7 +8,7 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
 {
     internal class ESUFOGun : ESWeapon
     {
-        public string toString()
+        public override string ToString()
         {
             return "20 damage";
         }

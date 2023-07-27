@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleAppDesignPatterns.AbstractFactory
+namespace ConsoleAppDesignPatterns.Builder
 {
-    public interface ESWeapon
+    public interface IBuilderStep3
     {
-        public string ToString();
+        public ConcreteBuilder Step3(/* parameters */);
     }
+
 }

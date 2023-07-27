@@ -9,7 +9,7 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
     public abstract class EnemyShip
     {
 
-        private String name;
+        private string name;
 
         // Newly defined objects that represent weapon & engine
         // These can be changed easily by assigning new parts 
@@ -18,8 +18,7 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
         public ESWeapon weapon;
         public ESEngine engine;
 
-        public String getName() { return name; }
-        public void setName(String newName) { name = newName; }
+        public string Name { get => name; set => name = value; }
 
         public abstract void makeShip();
 
@@ -30,30 +29,30 @@ namespace ConsoleAppDesignPatterns.AbstractFactory
         public void followHeroShip()
         {
 
-            Console.WriteLine(getName() + " is following the hero at " + engine);
+            Console.WriteLine(Name + " is following the hero at " + engine);
 
         }
 
         public void displayEnemyShip()
         {
 
-            Console.WriteLine(getName() + " is on the screen");
+            Console.WriteLine(Name + " is on the screen");
 
         }
 
         public void enemyShipShoots()
         {
 
-            Console.WriteLine(getName() + " attacks and does " + weapon);
+            Console.WriteLine(Name + " attacks and does " + weapon);
 
         }
 
         // If any EnemyShip object is printed to screen this shows up
 
-        public String toString()
+        public override string ToString()
         {
 
-            String infoOnShip = "The " + name + " has a top speed of " + engine +
+            String infoOnShip = "The " + Name + " has a top speed of " + engine +
                     " and an attack power of " + weapon;
 
             return infoOnShip;
