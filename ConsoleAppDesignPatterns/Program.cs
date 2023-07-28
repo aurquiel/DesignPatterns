@@ -1,10 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ConsoleAppDesignPatterns.AbstractFactory;
+using ConsoleAppDesignPatterns.Adapter;
 using ConsoleAppDesignPatterns.Builder;
 using ConsoleAppDesignPatterns.ChainOfResponsibility;
+using ConsoleAppDesignPatterns.Command;
+using ConsoleAppDesignPatterns.Decorator;
 using ConsoleAppDesignPatterns.Factory;
 using ConsoleAppDesignPatterns.Momento;
 using ConsoleAppDesignPatterns.Observer;
+using ConsoleAppDesignPatterns.Prototype;
 using ConsoleAppDesignPatterns.Singleton;
 using ConsoleAppDesignPatterns.Strategy;
 using ConsoleAppDesignPatterns.Visitor;
@@ -102,7 +106,7 @@ string textRestore = originator.RestoreFromMemento(caretaker.GetMemento(0));
 Console.WriteLine(textRestore);
 
 Console.WriteLine();
-Console.WriteLine("Chain of Responsibility");
+Console.WriteLine("Chain of Responsibility Pattern");
 
 Chain chainCalc1 = new AddNumbers();
 Chain chainCalc2 = new SubtractNumbers();
@@ -115,3 +119,72 @@ chainCalc3.SetNextChain(chainCalc4);
 
 NumbersOperation reequest = new NumbersOperation(4, 2, "add");
 chainCalc1.Calculate(reequest);
+
+Console.WriteLine();
+Console.WriteLine("Prototype Pattern");
+
+Person p = new Person(1, "Edgar", DateTime.Now, new Address { Id = 1, HouseNumber = 24, Street = "Calle Quebec" });
+var a = p.DeepCopy();
+a.Name = "Luis";
+a.Address.HouseNumber = 48;
+Console.WriteLine(p + " " + p.GetHashCode());
+Console.WriteLine(a + " " + a.GetHashCode());
+
+Console.WriteLine();
+Console.WriteLine("Decorator Pattern");
+
+IPizza basicPizza = new TomatoSauce(new Mozzarella(new PlainPizza()));
+Console.WriteLine(basicPizza.GetDescription());
+Console.WriteLine(basicPizza.GetCost());
+
+Console.WriteLine();
+Console.WriteLine("Command Pattern");
+
+IElectronicDevice electronicDevice = TVRemote.GetDevice();
+ICommand onCommand = new TurnTVOn(electronicDevice);
+DeviceButton onPressed = new DeviceButton(onCommand);
+onPressed.Press();
+
+ICommand offCommand = new TurnTVOff(electronicDevice);
+onPressed = new DeviceButton(offCommand);
+onPressed.Press();
+
+ICommand volUpCommand = new TurnTVUp(electronicDevice);
+onPressed = new DeviceButton(volUpCommand);
+onPressed.Press();
+onPressed.Press();
+onPressed.Press();
+
+IElectronicDevice theTv = new Televison();
+IElectronicDevice theRadio = new Radio();
+List<IElectronicDevice> allDevices = new() { theTv, theRadio };
+ICommand turnItAllOFf = new TurnItAllOff(allDevices);
+DeviceButton turnThemOff = new DeviceButton(turnItAllOFf);
+turnThemOff.Press();
+
+turnThemOff.PressUndo();
+
+Console.WriteLine();
+Console.WriteLine("Adapter Pattern");
+
+EnemyTank rx7Tank = new();
+EnemyRobot fred = new();
+IEnemyAttacker robotAdpater = new EnemyRobotAdpater(fred);
+
+Console.WriteLine("The Robot");
+
+fred.ReactToHuman("Paul");
+fred.WalkForward();
+fred.SmashWithHands();
+
+Console.WriteLine("The Enemy Tank");
+
+rx7Tank.AssignDriver("Frank");
+rx7Tank.DriverForward();
+rx7Tank.FireWeapon();
+
+Console.WriteLine("The Robot with Adpater");
+
+robotAdpater.AssignDriver("Mark");
+robotAdpater.DriverForward();
+robotAdpater.FireWeapon();

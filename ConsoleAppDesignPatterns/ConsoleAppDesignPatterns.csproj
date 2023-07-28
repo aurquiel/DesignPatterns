@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Prototype\" />
+    <Folder Include="Proxy\" />
   </ItemGroup>
 
 </Project>
