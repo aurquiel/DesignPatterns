@@ -1,16 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ConsoleAppDesignPatterns.AbstractFactory;
 using ConsoleAppDesignPatterns.Adapter;
+using ConsoleAppDesignPatterns.Bridge;
 using ConsoleAppDesignPatterns.Builder;
 using ConsoleAppDesignPatterns.ChainOfResponsibility;
 using ConsoleAppDesignPatterns.Command;
 using ConsoleAppDesignPatterns.Decorator;
+using ConsoleAppDesignPatterns.Facade;
 using ConsoleAppDesignPatterns.Factory;
-using ConsoleAppDesignPatterns.Momento;
+using ConsoleAppDesignPatterns.Memento;
 using ConsoleAppDesignPatterns.Observer;
 using ConsoleAppDesignPatterns.Prototype;
 using ConsoleAppDesignPatterns.Singleton;
 using ConsoleAppDesignPatterns.Strategy;
+using ConsoleAppDesignPatterns.Template;
 using ConsoleAppDesignPatterns.Visitor;
 
 Console.WriteLine("Strategy Pattern");
@@ -26,6 +29,7 @@ Console.WriteLine(numbers.Search.ElementInList(numbers.NumbersList, 7));
 
 Console.WriteLine();
 Console.WriteLine("Observer Pattern");
+
 StockGrabber stockGrabber = new StockGrabber();
 StockObserver stockObserver = new StockObserver(stockGrabber);
 stockGrabber.IbmPrice = 100.64;     //each time the stock changes notify to the observer.
@@ -35,6 +39,7 @@ stockGrabber.Unregister(stockObserver);
 
 Console.WriteLine();
 Console.WriteLine("Factory Pattern");
+
 var equip1 = EquipmentFactory.CreateEquipment(EquipmentFactory.SELECTOR.Shield);
 var equip2 = EquipmentFactory.CreateEquipment(EquipmentFactory.SELECTOR.Bow);
 var equip3 = EquipmentFactory.CreateEquipment(EquipmentFactory.SELECTOR.Sword);
@@ -188,3 +193,40 @@ Console.WriteLine("The Robot with Adpater");
 robotAdpater.AssignDriver("Mark");
 robotAdpater.DriverForward();
 robotAdpater.FireWeapon();
+
+Console.WriteLine();
+Console.WriteLine("Facade Pattern");
+
+BankAccountFacade accessingBank = new BankAccountFacade(12345678, 1234);
+accessingBank.WithdrawCash(50.00);
+accessingBank.WithdrawCash(900.00);
+accessingBank.DepositCash(200.00);
+
+Console.WriteLine();
+Console.WriteLine("Bridge Pattern");
+
+RemoteButton theTV = new TvRemoteMute(new TvDevice(1, 200));
+RemoteButton theTV2 = new TvRemoteMute(new TvDevice(1, 200));
+
+Console.WriteLine("Test TV with Mute");
+theTV.ButtonFivePressed();
+theTV.ButtonSixPressed();
+theTV.ButtonNinePressed();
+
+Console.WriteLine("Test TV with Pause");
+theTV2.ButtonFivePressed();
+theTV2.ButtonSixPressed();
+theTV2.ButtonSixPressed();
+theTV2.ButtonSixPressed();
+theTV2.ButtonSixPressed();
+theTV2.ButtonNinePressed();
+theTV2.DeviceFeedBack();
+
+Console.WriteLine();
+Console.WriteLine("Template Pattern");
+
+Hoagie cust12Hoagie = new ItalianHoagie();
+cust12Hoagie.MakeSandwich();
+
+Hoagie cust13Hoagie = new VeggeiHoagie();
+cust13Hoagie.MakeSandwich();
