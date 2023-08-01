@@ -9,10 +9,14 @@ using ConsoleAppDesignPatterns.Composite;
 using ConsoleAppDesignPatterns.Decorator;
 using ConsoleAppDesignPatterns.Facade;
 using ConsoleAppDesignPatterns.Factory;
+using ConsoleAppDesignPatterns.Flyweight;
+using ConsoleAppDesignPatterns.Iterator;
 using ConsoleAppDesignPatterns.Memento;
 using ConsoleAppDesignPatterns.Observer;
 using ConsoleAppDesignPatterns.Prototype;
+using ConsoleAppDesignPatterns.Proxy;
 using ConsoleAppDesignPatterns.Singleton;
+using ConsoleAppDesignPatterns.State;
 using ConsoleAppDesignPatterns.Strategy;
 using ConsoleAppDesignPatterns.Template;
 using ConsoleAppDesignPatterns.Visitor;
@@ -274,3 +278,67 @@ heavyMetalMusic.Add(new Song("Ace of Spades", "Motorhead", 1980));
 DiscJockey crazyLarry = new DiscJockey(everySong);
 
 crazyLarry.GetSongList();
+
+Console.WriteLine();
+Console.WriteLine("Iterator Pattern");
+
+ConcreteAggregate items = new ConcreteAggregate();
+items[0] = "Item A";
+items[1] = "Item B";
+items[2] = "Item C";
+items[3] = "Item D";
+// Create Iterator and provide aggregate
+Iterator i = items.CreateIterator();
+
+Console.WriteLine("Iterating over collection:");
+object item = i.First();
+
+while (item != null)
+{
+    Console.WriteLine(item);
+    item = i.Next();
+}
+
+Console.WriteLine();
+Console.WriteLine("Flyweight Pattern");
+
+string document = "AAZZBBZB";
+char[] chars = document.ToCharArray();
+CharacterFactory factory = new CharacterFactory();
+// extrinsic state
+int pointSize = 10;
+// For each character use a flyweight object
+foreach (char c in chars)
+{
+    pointSize++;
+    Character character = factory.GetCharacter(c);
+    character.Display(pointSize);
+}
+
+Console.WriteLine();
+Console.WriteLine("Srate Pattern");
+
+ATMMachine atmMachine = new ATMMachine();
+
+atmMachine.InsertCard();
+
+atmMachine.EjectCard();
+
+atmMachine.InsertCard();
+
+atmMachine.InsertPin(1234);
+
+atmMachine.RequestCash(2000);
+
+atmMachine.InsertCard();
+
+atmMachine.InsertPin(1234);
+
+Console.WriteLine();
+Console.WriteLine("Proxy Pattern");
+
+GetATMData realATMMachine = new ATMMachine2();
+GetATMData atmProxy = new ATMProxy();
+
+Console.WriteLine("Current ATM State " + atmProxy.GetATMState());
+Console.WriteLine("Cash in ATM Machine $ " + atmProxy.GetCashInMachine());
